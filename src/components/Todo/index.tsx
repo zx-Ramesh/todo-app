@@ -33,7 +33,7 @@ const Todo = () => {
           </p>
         ))}
       </div>
-      <div className="w-[1px] bg-[#D8D8D8] bg-red-300 h-full"></div>
+      <div className="w-[2px] bg-[#D8D8D8] h-full"></div>
       <div className="flex flex-col gap-2 w-4/5 ml-8 mt-8">
         <h1 className="text-4xl font-semibold">All Tasks</h1>
         <input
