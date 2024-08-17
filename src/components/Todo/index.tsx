@@ -7,7 +7,9 @@ import { setFilter } from '@/app/redux/filterSlice';
 import { addTodo, deleteTodo, toggleCheck } from '@/app/redux/todoSlice';
 
 
+
 const Todo = () => {
+  
   const filterTagsTask = ["All", "Active", "Completed"];
   const todos = useSelector((state) => state.todos);
   const filter = useSelector((state) => state.filter);
