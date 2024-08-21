@@ -5,17 +5,20 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 
 import { setFilter } from '@/app/redux/filterSlice';
 import { addTodo, deleteTodo, toggleCheck } from '@/app/redux/todoSlice';
+import { useAppDispatch, useAppSelector } from '@/app/redux/store';
 
 
 
 const Todo = () => {
   
   const filterTagsTask = ["All", "Active", "Completed"];
-  const todos = useSelector((state) => state.todos);
-  const filter = useSelector((state) => state.filter);
-  const dispatch = useDispatch();
+  const todos = useAppSelector((state) => state.todos);
+  const filter = useAppSelector((state) => state.filter);
+  const dispatch = useAppDispatch();
 
-  const filteredTodos = todos.filter((task) => {
+  console.log("todos", todos)
+
+  const filteredTodos = todos?.filter((task) => {
     if (filter === "All") return true;
     if (filter === "Active") return !task.completed;
     if (filter === "Completed") return task.completed;
@@ -28,21 +31,21 @@ const Todo = () => {
         {filterTagsTask.map((tName) => (
           <p
             key={tName}
-            className={filter === tName ? "text-[#EA5959] cursor-pointer" : ""}
+            className={filter === tName ? "text-primary cursor-pointer" : ""}
             onClick={() => dispatch(setFilter(tName))}
           >
             {tName}
           </p>
         ))}
       </div>
-      <div className="w-[2px] bg-[#D8D8D8] h-full"></div>
+      <div className="w-[2px] bg-primary-100 h-full"></div>
       <div className="flex flex-col gap-2 w-4/5 ml-8 mt-8">
         <h1 className="text-4xl font-semibold">All Tasks</h1>
         <input
           type="text"
           placeholder="Add a new task inside ‘All’ category"
           className="w-[90%] p-2 bg-[#F3F3F3]"
-          onKeyDown={(e) => {
+          onKeyDown={(e: any ) => {
             if (e.key === "Enter" && e.target.value) {
               dispatch(addTodo(e.target.value));
               e.target.value = "";

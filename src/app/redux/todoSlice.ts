@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuid } from "uuid";
 
 
+export type TodoProps = {
+  id: string,
+  text: string,
+  completed: boolean
+}
+
+const initialState: TodoProps[] = []
 
 
 const todosSlice = createSlice({
   name: "todos",
-  initialState: [],
+  initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.push({ id: uuid(), text: action.payload, completed: false });
+      state.push({ id: self.crypto.randomUUID(), text: action.payload, completed: false });
     },
     deleteTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload);
